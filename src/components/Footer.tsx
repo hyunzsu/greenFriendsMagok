@@ -9,6 +9,7 @@ export default function Footer() {
           <p className="font-semibold">Magok, GreenFriends</p>
         </div>
         <div className="mb-4 md:mb-0">
+          <p className="font-semibold">Developer : </p>
           <p>Email. fridaynight@kakao.com</p>
           <p>GitHub. github.com/kimzeze</p>
         </div>
