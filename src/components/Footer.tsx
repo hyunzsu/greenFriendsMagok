@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
         <div className="mb-4 md:mb-0">
           <p>본 사이트는 녹색친구들 [마곡] 입주예정자가 운영하는 사이트임을 알립니다.</p>
-          <p>고객센터 | 사이트 문의 | 녹색친구들 공식 홈페이지</p>
+          <p>고객센터 | 사이트 문의 | 녹색친구들 공식 홈페이지 바로가기</p>
         </div>
         <div>
           <p className="font-semibold">
