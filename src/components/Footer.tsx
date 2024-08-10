@@ -9,13 +9,13 @@ export default function Footer() {
           <p className="font-semibold">Magok, GreenFriends</p>
         </div>
         <div className="mb-4 md:mb-0">
-          <p className="font-semibold">Developer : </p>
+          <p className="font-semibold">Developer</p>
           <p>Email. fridaynight@kakao.com</p>
           <p>GitHub. github.com/kimzeze</p>
         </div>
         <div className="mb-4 md:mb-0">
           <p>본 사이트는 녹색친구들 [마곡] 입주예정자가 운영하는 사이트임을 알립니다.</p>
-          <p>고객센터 | 제휴문의 | 광고문의</p>
+          <p>고객센터 | 사이트 문의 | 녹색친구들 공식 홈페이지</p>
         </div>
         <div>
           <p className="font-semibold">
