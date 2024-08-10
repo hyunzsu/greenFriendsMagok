@@ -9,7 +9,7 @@ export default function MeatBallsMenu() {
   return (
     <div>
       <button
-        className="flex flex-row items-center justify-center rounded-full border border-primary p-2 hover:bg-secondary"
+        className="flex flex-row items-center justify-center rounded-full border border-primary p-2 active:bg-secondary"
         aria-label="메뉴 열기"
         aria-haspopup="true"
         onClick={openModal}
