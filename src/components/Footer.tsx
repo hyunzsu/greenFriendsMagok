@@ -13,7 +13,7 @@ export default function Footer() {
           <p>GitHub. github.com/kimzeze</p>
         </div>
         <div className="mb-4 md:mb-0">
-          <p>본 사이트는 녹색친구들 마곡 입주자가 운영하는 사이트임을 알립니다.</p>
+          <p>본 사이트는 녹색친구들 [마곡] 입주예정자가 운영하는 사이트임을 알립니다.</p>
           <p>고객센터 | 제휴문의 | 광고문의</p>
         </div>
         <div>
