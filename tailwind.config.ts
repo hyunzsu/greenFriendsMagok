@@ -45,7 +45,7 @@ const config: Config = {
       },
       colors: {
         primary: '#222222',
-        delete: '#dedede',
+        link: '#dedede',
         white: '#ffffff',
         tertiary: '#A0D1EF',
         secondary: '#FF451F',
