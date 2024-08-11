@@ -3,8 +3,8 @@ import Title from '@/components/Title';
 
 export default function Home() {
   return (
-    <main className="border">
-      <Title title="Notice" href="/" />
+    <main className="">
+      <Title title="Notice" href="/notice" isMainPage={true} />
     </main>
   );
 }
