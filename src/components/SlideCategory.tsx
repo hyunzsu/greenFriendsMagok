@@ -1,11 +1,29 @@
 import CategoryButton from './CategoryButton';
+import { communityCategories, noticeCategories } from '@/lib/data/categories';
 
-const categoryArray = ['전체', '잡담', '추천해요', '나눔', '후기', 'Q&A', '함께해요', '도와주세요'];
+import { BoardType } from '@/lib/types/types';
 
-export default function SlideCategory() {
+type SlideCategoryProps = {
+  boardType: BoardType;
+};
+
+export default function SlideCategory({ boardType }: SlideCategoryProps) {
+  const getCategoriesForBoard = (type: BoardType) => {
+    switch (type) {
+      case 'community':
+        return communityCategories;
+      case 'notice':
+        return noticeCategories;
+      default:
+        return [];
+    }
+  };
+
+  const categories = getCategoriesForBoard(boardType);
+
   return (
     <div className="scrollbar-hide flex gap-1.5 overflow-x-auto">
-      {categoryArray.map((category) => (
+      {categories.map((category) => (
         <CategoryButton key={category} label={category} />
       ))}
     </div>
