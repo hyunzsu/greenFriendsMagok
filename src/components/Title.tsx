@@ -3,13 +3,14 @@ import Link from 'next/link';
 interface TitleProps {
   title: string;
   href: string;
+  isMainPage: boolean;
 }
 
-const Title = ({ title, href }: TitleProps) => {
-  return (
-    <Link href={href} className="block">
-      <div className="flex cursor-pointer flex-row items-center justify-between py-2">
-        <h3 className="text-xl font-semibold">{title}</h3>
+const Title = ({ title, href, isMainPage }: TitleProps) => {
+  const TitleContent = () => (
+    <div className="flex cursor-pointer flex-row items-center justify-between py-2">
+      <h3 className="text-2xl font-semibold">{title}</h3>
+      {isMainPage && (
         <div className="ml-8 flex flex-row items-center">
           <span className="text-xs">더보기</span>
           <div>
@@ -18,8 +19,22 @@ const Title = ({ title, href }: TitleProps) => {
             </svg>
           </div>
         </div>
-      </div>
-    </Link>
+      )}
+    </div>
+  );
+
+  if (isMainPage) {
+    return (
+      <Link href={href} className="block border border-primary">
+        <TitleContent />
+      </Link>
+    );
+  }
+
+  return (
+    <div className="block border border-primary">
+      <TitleContent />
+    </div>
   );
 };
 
