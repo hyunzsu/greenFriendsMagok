@@ -25,14 +25,14 @@ const Title = ({ title, href, isMainPage }: TitleProps) => {
 
   if (isMainPage) {
     return (
-      <Link href={href} className="block border border-primary">
+      <Link href={href} className="block">
         <TitleContent />
       </Link>
     );
   }
 
   return (
-    <div className="block border border-primary">
+    <div className="block">
       <TitleContent />
     </div>
   );
