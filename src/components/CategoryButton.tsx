@@ -1,6 +1,6 @@
 'use client';
 
-export default function CategoryButton({ label }) {
+export default function CategoryButton({ label }: { label: string }) {
   return (
     <button
       type="button"
