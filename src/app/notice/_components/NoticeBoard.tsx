@@ -1,12 +1,12 @@
-import { getNotices } from '@/lib/noticeService';
-import { NoticeContent } from '@/lib/types/notice';
+import { getNotices } from '../_lib/noticeService';
+import { NoticeTable } from '@/lib/types/database';
 import NoticeItem from './NoticeItem';
 
 export default async function NoticeBoard() {
-  const notices: NoticeContent[] = await getNotices();
+  const notices: NoticeTable[] = await getNotices();
 
   return (
-    <div className="space-y-4">
+    <div className="my-2 flex flex-col border border-primary">
       {notices.map((notice) => (
         <NoticeItem key={notice.id} notice={notice} />
       ))}
