@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from './supabase-server';
+import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { NoticeContent } from '@/lib/types/notice';
 
 export async function getNotices(): Promise<NoticeContent[]> {

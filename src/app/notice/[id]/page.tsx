@@ -1,4 +1,4 @@
-import { getNoticeById } from '@/lib/noticeService';
+import { getNoticeById } from '../_lib/noticeService';
 import { NoticeContent } from '@/lib/types/notice';
 
 export const revalidate = 60; // 60초마다 재검증
