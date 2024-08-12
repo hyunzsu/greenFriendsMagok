@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server';
 import { TableName, RecordType } from '@/lib/types/database';
 
-// 테이블에서 모든 데이터를 가져오는 범용 함수
+// 테이블에서 모든 데이터를 가져오는 범용 함수 (해당 페이지들에서 사용)
 export async function fetchAllFromTable<T extends TableName>(
   tableName: T,
   columns: string = '*',
