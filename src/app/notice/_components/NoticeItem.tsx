@@ -1,10 +1,10 @@
 'use client';
 
-import { NoticeContent } from '@/lib/types/notice';
+import { NoticeTable } from '@/lib/types/database';
 import Link from 'next/link';
 
 interface NoticeItemProps {
-  notice: NoticeContent;
+  notice: NoticeTable;
 }
 
 export default function NoticeItem({ notice }: NoticeItemProps) {
