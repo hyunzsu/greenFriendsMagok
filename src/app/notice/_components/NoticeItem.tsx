@@ -10,11 +10,11 @@ interface NoticeItemProps {
 export default function NoticeItem({ notice }: NoticeItemProps) {
   return (
     <Link href={`/notice/${notice.id}`}>
-      <div className="mb-4 cursor-pointer rounded border p-4 active:bg-gray-50">
+      <div className="mb-1 cursor-pointer rounded border p-4 active:bg-gray-50">
         <h2 className="text-base font-semibold">{notice.title}</h2>
-        <p className="line-clamp-2 text-gray-600">{notice.content}</p>
-        <div className="mt-2 text-sm text-gray-500">
-          작성자: {notice.author} | 작성일: {new Date(notice.created_at).toLocaleDateString()}
+        <div className="text-#dedede mt-2 flex flex-row justify-between text-sm">
+          <p>{new Date(notice.created_at).toLocaleDateString()}</p>
+          <p>{notice.author}</p>
         </div>
       </div>
     </Link>
