@@ -1,11 +1,20 @@
 'use client';
+import cn from '@/lib/utils/cn';
 
-export default function CategoryButton({ label }: { label: string }) {
+type CategoryButtonProps = {
+  label: string;
+  isSelected: boolean;
+  onClick: () => void;
+};
+export default function CategoryButton({ label, isSelected, onClick }: CategoryButtonProps) {
   return (
     <button
       type="button"
-      className="h-[30px] whitespace-nowrap rounded-full border border-primary px-3.5 text-[16px]"
-      // onClick={onClick}
+      className={cn(
+        'h-[30px] whitespace-nowrap rounded-full border border-primary px-3.5 text-[16px]',
+        isSelected ? 'bg-secondary' : 'hover:bg-secondary/50',
+      )}
+      onClick={onClick}
     >
       {label}
     </button>
