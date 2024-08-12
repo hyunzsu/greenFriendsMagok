@@ -1,0 +1,22 @@
+'use client';
+
+import { NoticeContent } from '@/lib/types/notice';
+import Link from 'next/link';
+
+interface NoticeItemProps {
+  notice: NoticeContent;
+}
+
+export default function NoticeItem({ notice }: NoticeItemProps) {
+  return (
+    <Link href={`/notice/${notice.id}`}>
+      <div className="mb-4 cursor-pointer rounded border p-4 hover:bg-gray-50">
+        <h2 className="text-xl font-semibold">{notice.title}</h2>
+        <p className="line-clamp-2 text-gray-600">{notice.content}</p>
+        <div className="mt-2 text-sm text-gray-500">
+          작성자: {notice.author} | 작성일: {new Date(notice.created_at).toLocaleDateString()}
+        </div>
+      </div>
+    </Link>
+  );
+}

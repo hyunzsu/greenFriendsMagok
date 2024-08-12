@@ -17,6 +17,8 @@
         "name": "next"
       }
     ],
+    "types": ["json-schema"],
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "@/*": ["./src/*"]
     }
