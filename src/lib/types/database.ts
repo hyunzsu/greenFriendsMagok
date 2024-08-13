@@ -12,7 +12,7 @@ export interface NoticeTable extends BaseRecord {
   title: string;
   content: string;
   author: string;
-  tag: NoticeTag;
+  category: NoticeTag;
 }
 
 /* Forum 게시글 타입 */
