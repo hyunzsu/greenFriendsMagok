@@ -2,6 +2,7 @@ import { BackButtonServer } from '@/components/_index';
 import { getNoticeById } from '../_lib/noticeService';
 import { NoticeTable } from '@/lib/types/database';
 import ReactMarkdown from 'react-markdown';
+import Image from 'next/image';
 
 export const revalidate = 60; // 60초마다 재검증
 
@@ -18,6 +19,7 @@ export default async function NoticeDetailPage({ params }: { params: { id: strin
       <div className="pt-1 text-sm font-semibold text-secondary">{notice.category}</div>
       <h1 className="mb-4 border-b border-primary pb-2 text-xl font-bold">{notice.title}</h1>
       <div className="whitespace-pre-wrap py-2 text-14">
+        {notice.image && <Image src={notice.image} alt="공지사항 이미지" width={350} height={185} className="mb-4" />}
         <ReactMarkdown>{notice.content}</ReactMarkdown>
       </div>
       <div className="mb-2 flex justify-end border-b border-primary py-1 text-sm text-gray-500">
