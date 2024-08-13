@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-primary bg-white text-xs text-primary">
+    <footer className="mt-10 w-full border-t border-primary bg-white text-xs text-primary">
       <div className="mx-auto max-w-screen-xl p-4 md:flex md:justify-between">
         <div className="mb-4 md:mb-0">
           <p>161-11 Magokjungang-ro, Gangseo-gu, Seoul</p>
@@ -25,6 +25,7 @@ export default function Footer() {
         </div>
         <div className="mb-4 md:mb-0">
           <p>본 사이트는 녹색친구들 [마곡] 입주예정자가 운영하는 사이트임을 알립니다.</p>
+          <p>본 사이트는 비영리 목적으로 운영됩니다.</p>
           <p>고객센터 | 사이트 문의 | 녹색친구들 공식 홈페이지 바로가기</p>
         </div>
         <div>
