@@ -14,8 +14,8 @@ export default async function NoticeDetailPage({ params }: { params: { id: strin
 
   return (
     <div className="container mx-auto">
-      <BackButtonServer />
-      <div>{notice.category}</div>
+      <BackButtonServer className="mb-2" />
+      <div className="text-sm font-semibold text-secondary">{notice.category}</div>
       <h1 className="mb-4 border-b border-primary pb-2 text-xl font-bold">{notice.title}</h1>
 
       <div className="whitespace-pre-wrap py-2 text-14">
