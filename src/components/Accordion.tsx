@@ -34,11 +34,11 @@ export default function Accordion({ isAccordionOpen: initialOpen = false, questi
       {/* 답변 */}
       <div
         className={cn(
-          'overflow-hidden transition-[max-height] duration-300 ease-in-out',
+          'overflow-hidden transition-[max-height] duration-500 ease-in-out',
           isAccordionOpen ? 'max-h-screen' : 'max-h-0',
         )}
       >
-        <div className={cn('py-2 transition-opacity duration-500', isAccordionOpen ? 'opacity-100' : 'opacity-0')}>
+        <div className={cn('py-2 transition-opacity duration-700', isAccordionOpen ? 'opacity-100' : 'opacity-0')}>
           {answer}
         </div>
       </div>
