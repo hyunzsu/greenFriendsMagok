@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-primary bg-white text-xs text-primary">
+    <footer className="mt-10 w-full border-t border-primary bg-white text-xs text-primary">
       <div className="mx-auto max-w-screen-xl p-4 md:flex md:justify-between">
         <div className="mb-4 md:mb-0">
           <p>161-11 Magokjungang-ro, Gangseo-gu, Seoul</p>
