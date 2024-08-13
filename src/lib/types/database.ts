@@ -13,6 +13,7 @@ export interface NoticeTable extends BaseRecord {
   content: string;
   author: string;
   category: NoticeTag;
+  image?: string;
 }
 
 /* Forum 게시글 타입 */
