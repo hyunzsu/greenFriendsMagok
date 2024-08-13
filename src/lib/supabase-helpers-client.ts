@@ -51,19 +51,10 @@ export async function fetchFilteredFromTable<T extends TableName>(
   console.log('테이블에서 가져오는 중: ', tableName, '카테고리:', category);
   await checkDatabaseConnection();
 
-  // 1. 먼저 전체 데이터를 가져와 로그로 출력
-  const { data: allData, error: allDataError } = await supabase.from(tableName).select(columns);
-
-  console.log('테이블의 모든 데이터:', allData);
-
-  if (allDataError) {
-    console.error('모든 데이터 가져오기 오류:', allDataError);
-    throw allDataError;
-  }
-
-  // 2. 카테고리 필터링을 적용
+  // 카테고리 필터링 적용
   let query = supabase.from(tableName).select(columns);
 
+  // 카테고리가 전체가 아닐경우 카테고리 필터링 적용
   if (category !== '전체') {
     // 대소문자를 구분하지 않는 검색을 위해 ilike 사용
     query = query.ilike('category', `%${category}%`);
