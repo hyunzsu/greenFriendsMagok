@@ -23,6 +23,14 @@ export interface ForumPostTable extends BaseRecord {
   author: string;
 }
 
+/* FAQ 타입 */
+export interface FAQTable {
+  id: number;
+  question: string;
+  answer: string;
+  isAccordionOpen: boolean;
+}
+
 /* 테이블 이름 정의 */
 export type TableName = 'notices' | 'forum_posts';
 
