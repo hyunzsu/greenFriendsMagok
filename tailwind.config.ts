@@ -38,9 +38,9 @@ const config: Config = {
       },
       fontWeight: {
         regular: '400',
-        bold: '700',
-        semibold: '600',
         medium: '500',
+        semibold: '600',
+        bold: '700',
         extrabold: '800',
       },
       colors: {
