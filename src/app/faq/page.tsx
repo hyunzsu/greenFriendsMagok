@@ -1,15 +1,14 @@
-import Accordion from '@/components/Accordion';
 import Title from '@/components/Title';
-import { fqas } from '@/lib/data/faq';
-import FAQ from '@/lib/types/faq';
+import { getFaqs } from './_lib/faqService';
+import Accordion from './_components/Accordion';
 
-export default function FAQ() {
+export default async function FAQ() {
+  const faqs = await getFaqs();
+
   return (
-    <section className="flex flex-col divide-y divide-black">
+    <section className="">
       <Title title="FAQ" href="/faq" isMainPage={false} />
-      {fqas.map((data: FAQ) => (
-        <Accordion key={data.id} question={data.question} answer={data.answer} isAccordionOpen={data.isAccordionOpen} />
-      ))}
+      <Accordion faqs={faqs} />
     </section>
   );
 }
