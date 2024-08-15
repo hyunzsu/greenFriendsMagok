@@ -8,7 +8,7 @@ export default async function NoticesPage() {
 
   return (
     <section>
-      <Title title="Notice" href="/board" isMainPage={false} />
+      <Title title="Notice" href="/notice" isMainPage={false} />
       <SlideCategory boardType="notice" />
       <NoticeBoard initialNotices={initialNotices} />
     </section>
