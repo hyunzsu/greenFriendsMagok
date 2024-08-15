@@ -26,6 +26,10 @@ export default async function NoticeDetailPage({ params }: { params: { id: strin
             width={400}
             height={300}
             className="mb-4 h-auto w-full object-contain"
+            priority={true}
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3C/svg%3E"
+            loading="eager"
           />
         )}
         <ReactMarkdown>{notice.content}</ReactMarkdown>
