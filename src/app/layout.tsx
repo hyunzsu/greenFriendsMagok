@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className="flex min-h-screen flex-col text-base antialiased">
         <Header />
-        <main className="flex-grow px-4 pb-6 pt-4">
+        <main className="flex-grow">
           <h1 className="sr-only">녹색친구들 마곡</h1>
           {children}
         </main>
