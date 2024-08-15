@@ -48,7 +48,7 @@ const config: Config = {
         link: '#dedede',
         white: '#ffffff',
         tertiary: '#A0D1EF',
-        secondary: '#FF451F',
+        secondary: '#ff5100',
         warning: '#D7260D',
         down: '#f1f1f1',
         accent: '#ff4800',
