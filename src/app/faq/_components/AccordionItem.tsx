@@ -35,7 +35,7 @@ export default function AccordionItem({ faq, isOpen, toggleAccordion }: FaqItemP
       >
         <div
           className={cn(
-            'whitespace-pre-wrap px-5 py-2 text-14 font-medium transition-opacity duration-700',
+            'mt-2 whitespace-pre-wrap px-5 py-2 text-14 font-medium transition-opacity duration-700',
             isOpen ? 'opacity-100' : 'opacity-0',
           )}
         >
