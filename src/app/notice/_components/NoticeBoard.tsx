@@ -46,7 +46,11 @@ export default function NoticeBoard({ initialNotices }: NoticeBoardProps) {
 
   // 로딩 중일 때 표시할 내용
   if (isLoading) {
-    return <div>카테고리 변경 중...</div>;
+    return (
+      <div className="my-5 flex h-[300px] w-full justify-center">
+        <p className="flex items-center justify-center text-xl font-bold text-tertiary">Loading 💫</p>
+      </div>
+    );
   }
 
   // 에러 발생 시 표시할 내용
@@ -60,7 +64,11 @@ export default function NoticeBoard({ initialNotices }: NoticeBoardProps) {
       {notices.length > 0 ? (
         notices.map((notice) => <NoticeItem key={notice.id} notice={notice} />)
       ) : (
-        <div>이 카테고리에 해당하는 공지사항이 없습니다.</div>
+        <div className="my-5 flex h-[300px] w-full justify-center">
+          <p className="flex items-center justify-center text-xl font-bold text-secondary">
+            현재 카테고리의 공지사항이 없습니다
+          </p>
+        </div>
       )}
     </div>
   );

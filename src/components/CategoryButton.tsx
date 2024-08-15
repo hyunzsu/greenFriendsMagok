@@ -12,7 +12,7 @@ export default function CategoryButton({ label, isSelected, onClick }: CategoryB
       type="button"
       className={cn(
         'h-[30px] whitespace-nowrap rounded-full border border-primary px-3.5 text-[16px]',
-        isSelected ? 'bg-secondary' : 'hover:bg-secondary/50',
+        isSelected ? 'bg-secondary' : 'active:bg-secondary',
       )}
       onClick={onClick}
     >

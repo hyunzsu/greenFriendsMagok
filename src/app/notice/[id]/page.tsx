@@ -19,7 +19,19 @@ export default async function NoticeDetailPage({ params }: { params: { id: strin
       <div className="pt-1 text-sm font-semibold text-secondary">{notice.category}</div>
       <h1 className="mb-4 border-b border-primary pb-2 text-xl font-bold">{notice.title}</h1>
       <div className="whitespace-pre-wrap py-2 text-14">
-        {notice.image && <Image src={notice.image} alt="공지사항 이미지" width={350} height={185} className="mb-4" />}
+        {notice.image && (
+          <Image
+            src={notice.image}
+            alt="공지사항 이미지"
+            width={400}
+            height={300}
+            className="mb-4 h-auto w-full object-contain"
+            priority={true}
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3C/svg%3E"
+            loading="eager"
+          />
+        )}
         <ReactMarkdown>{notice.content}</ReactMarkdown>
       </div>
       <div className="mb-2 flex justify-end border-b border-primary py-1 text-sm text-gray-500">

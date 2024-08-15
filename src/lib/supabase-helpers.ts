@@ -29,15 +29,15 @@ export async function fetchOneFromTable<T extends TableName>(tableName: T, id: n
   return data as RecordType<T>;
 }
 
-// 메인 페이지용: 특정 테이블의 최근 게시물 제목 몇 개를 가져오는 범용 함수
+// 메인 페이지용: 특정 테이블의 최근 게시물 제목과 작성자 정보를 가져오는 범용 함수
 export async function fetchRecentPostTitles<T extends TableName>(
   tableName: T,
   limit: number = 5,
-): Promise<Pick<RecordType<T>, 'id' | 'title' | 'created_at'>[]> {
+): Promise<Pick<RecordType<T>, 'id' | 'title' | 'created_at' | 'author'>[]> {
   const supabase = createServerSupabaseClient();
   const { data, error } = await supabase
     .from(tableName)
-    .select('id, title, created_at')
+    .select('id, title, created_at, author')
     .order('created_at', { ascending: false })
     .limit(limit);
 
@@ -45,5 +45,5 @@ export async function fetchRecentPostTitles<T extends TableName>(
     console.error(`${tableName}에서 최근 게시물을 가져오는 중 오류 발생:`, error);
     return [];
   }
-  return data as Pick<RecordType<T>, 'id' | 'title' | 'created_at'>[];
+  return data as Pick<RecordType<T>, 'id' | 'title' | 'created_at' | 'author'>[];
 }

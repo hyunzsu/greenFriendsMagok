@@ -20,7 +20,7 @@ const menuItems: MenuItem[] = [
   { href: '/notice', label: 'Notice' },
   { href: '/calendar', label: 'Calendar' },
   { href: '/forum', label: 'Forum' },
-  { href: '/green-friends', label: 'GreenFriends' },
+  { href: 'https://www.greenfriends.co.kr', label: 'GreenFriends' },
   { href: '/faq', label: 'FAQ' },
 ];
 

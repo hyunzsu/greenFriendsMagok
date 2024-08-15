@@ -28,11 +28,10 @@ export interface FAQTable {
   id: number;
   question: string;
   answer: string;
-  isAccordionOpen: boolean;
 }
 
 /* 테이블 이름 정의 */
-export type TableName = 'notices' | 'forum_posts';
+export type TableName = 'notices' | 'forum_posts' | 'faqs';
 
 /* 테이블별 레코드 타입 */
 export type RecordType<T extends TableName> = T extends 'notices'
