@@ -8,7 +8,7 @@ export default async function FAQ() {
   return (
     <section className="">
       <Title title="FAQ" href="/faq" isMainPage={false} />
-      <Accordion faqs={faqs} />
+      <Accordion faqs={faqs} title={'생활 관련'} />
     </section>
   );
 }
