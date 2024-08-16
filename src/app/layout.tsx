@@ -22,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="flex min-h-screen flex-col text-base antialiased">
-        <Header />
-        <main className="flex-grow">
-          <h1 className="sr-only">녹색친구들 마곡</h1>
-          {children}
-        </main>
-        <div id="portal"></div>
-        <Footer />
+        <div className="mx-auto w-full max-w-[480px]">
+          <Header />
+          <main className="flex-grow">
+            <h1 className="sr-only">녹색친구들 마곡</h1>
+            {children}
+          </main>
+          <div id="portal"></div>
+          <Footer />
+        </div>
         <Analytics />
       </body>
     </html>
