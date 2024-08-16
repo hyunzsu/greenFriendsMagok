@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import { BackButtonServer } from '@/components/_index';
 import { getNoticeById } from '../_lib/noticeService';
 import { NoticeTable } from '@/lib/types/database';
