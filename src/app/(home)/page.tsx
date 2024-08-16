@@ -4,6 +4,7 @@ import Overview from './_components/Overview';
 import HeroSection from './_components/HeroSection';
 import PreviewList from './_components/PreviewList';
 import FaqPreview from './_components/FaqPreview';
+import SpaceDesign from './_components/SpaceDesign';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <HeroSection />
       <div className="px-4 pb-6 pt-4">
         <Overview />
+        <SpaceDesign />
         <Title title="Notice" href="/notice" isMainPage={true} />
         <PreviewList tableName="notices" />
         <Title title="FAQ" href="/faq" isMainPage={true} />
