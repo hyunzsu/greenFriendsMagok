@@ -9,6 +9,8 @@ import SpaceDesign from './_components/SpaceDesign';
 import { getFaqs } from '@/app/faq/_lib/faqService';
 import Accordion from '@/app/faq/_components/Accordion';
 
+export const revalidate = 60; // 60초마다 재검증
+
 export default async function Home() {
   const faq_site = await getFaqs({ tableName: 'faq-site' });
   const faq_move_in = await getFaqs({ tableName: 'faq-move-in' });
