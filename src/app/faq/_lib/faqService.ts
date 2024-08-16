@@ -11,6 +11,5 @@ export async function getFaqs({ tableName }: { tableName: string }): Promise<FAQ
     return [];
   }
 
-  console.log(data);
   return data as FAQTable[];
 }
