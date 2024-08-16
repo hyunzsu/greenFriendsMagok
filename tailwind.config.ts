@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: { xs: '380px' },
       fontFamily: {
         busan: ['Busan', 'sans-serif'],
         nanum: ['NanumSquareNeoVariable', 'sans-serif'],
