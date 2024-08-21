@@ -36,7 +36,7 @@ export default function MenuModal({ closeModal }: MenuModalProps) {
 
   const handleClose = () => {
     setIsOpen(false);
-    setTimeout(closeModal, 300); // Wait for the exit animation to complete
+    closeModal(); // Wait for the exit animation to complete
   };
 
   return (
