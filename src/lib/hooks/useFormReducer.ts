@@ -156,6 +156,40 @@ export default function useFormReducer(state: TFormState, action: TFormAction) {
       };
     }
 
+    /* 호수(birth로 표현) 상태 업데이트 */
+    case 'UPDATE_BIRTH':
+      return {
+        ...state,
+        birth: action.payload,
+      };
+
+    /* 호수(birth로 표현) 유효성 검사 */
+    case 'VALIDATE_BIRTH': {
+      const birth = state.birth.trim();
+
+      // 유효한 호수 범위를 정의하는 함수
+      const isValidRange = (num: number) => {
+        const floor = Math.floor(num / 100);
+        const room = num % 100;
+        return floor >= 3 && floor <= 14 && room >= 1 && room <= 20;
+      };
+
+      // 숫자로 변환 가능하고 유효한 범위 내에 있는지 확인
+      const isValid = /^\d{3,4}$/.test(birth) && isValidRange(parseInt(birth));
+
+      return {
+        ...state,
+        valids: {
+          ...state.valids,
+          birth: isValid,
+        },
+        errorMessages: {
+          ...state.errorMessages,
+          birth: isValid ? null : '거주중인 올바른 호수를 입력해주세요.',
+        },
+      };
+    }
+
     default:
       return state;
   }

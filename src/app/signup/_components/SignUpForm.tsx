@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { supabase } from '@/lib/supabase';
 import { useReducer } from 'react';
 import { TFormState, TFormInput } from '@/lib/types/formType';
 import { useFormReducer } from '@/lib/hooks/_index';
@@ -68,28 +69,25 @@ export default function SignUpForm() {
   };
 
   /* 이메일 포커스 잃었을 때 함수 */
-  const checkEmailDuplicationOnBlur = async () => {
-    // 1. 이메일 유효성 검사
-    dispatch({ type: 'VALIDATE_EMAIL' });
-    // 2. 유효성 검사에 통과한 경우에만 이메일 중복 확인 요청
-    if (state.valids.email && state.email.trim()) {
-      const isDuplicated = await checkEmailDuplication(state.email);
-      console.log(isDuplicated);
-      if (!isDuplicated) {
-        dispatch({
-          type: 'EMAIL_DUPLICATION',
-          payload: '중복된 이메일입니다.',
-        });
-      }
-    }
-  };
+  // const checkEmailDuplicationOnBlur = async () => {
+  //   // 1. 이메일 유효성 검사
+  //   dispatch({ type: 'VALIDATE_EMAIL' });
+  //   // 2. 유효성 검사에 통과한 경우에만 이메일 중복 확인 요청
+  //   if (state.valids.email && state.email.trim()) {
+  //     const isDuplicated = await checkEmailDuplication(state.email);
+  //     console.log(isDuplicated);
+  //     if (!isDuplicated) {
+  //       dispatch({
+  //         type: 'EMAIL_DUPLICATION',
+  //         payload: '중복된 이메일입니다.',
+  //       });
+  //     }
+  //   }
+  // };
 
-  /* Form 제출 함수 */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const { email, password, name, phone, birth } = state;
-
     const {
       valids: {
         email: validEmail,
@@ -101,71 +99,59 @@ export default function SignUpForm() {
       },
     } = state;
 
-    /* 공백일 때 포커스 */
-    const firstInvalidInput = Object.keys(state.valids).find((key) => {
+    // 공백 체크 및 포커스 로직
+    const firstEmptyInput = Object.keys(state.valids).find((key) => {
       const value = state[key as TFormInput];
       return value === null || value === undefined || value === '';
     });
-
-    if (firstInvalidInput) {
-      const inputRef = document.getElementById(firstInvalidInput);
-      if (inputRef) {
-        inputRef.focus();
-      }
+    if (firstEmptyInput) {
+      const inputRef = document.getElementById(firstEmptyInput);
+      if (inputRef) inputRef.focus();
       return;
     }
 
-    /* 유효성 검사에 통과하지 못했을 때 포커스 */
+    // 유효성 검사 및 포커스 로직
     const isValidForm = validEmail && validPassword && validConfirmPassword && validName && validPhone && validBirth;
-
     if (!isValidForm) {
-      // 첫 번째 유효하지 않은 Input 필드를 찾아 포커스
       const firstInvalidInput = Object.keys(state.valids).find((key) => !state.valids[key as TFormInput]);
       if (firstInvalidInput) {
         const inputRef = document.getElementById(firstInvalidInput);
-        if (inputRef) {
-          inputRef.focus();
-        }
+        if (inputRef) inputRef.focus();
       }
       return;
     }
 
-    const type = 'seller';
-    const data = {
-      email,
-      password,
-      name,
-      type,
-      phone,
-      birth,
-      membership: 'basic',
-    };
-
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { name, phone, birth },
         },
-        body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        const responseData = await response.json();
+      if (error) {
+        if (error.message.includes('User already registered')) {
+          alert('이미 가입된 이메일입니다.');
+          dispatch({
+            type: 'EMAIL_DUPLICATION',
+            payload: '중복된 이메일입니다.',
+          });
+        } else {
+          alert('회원가입에 실패하였습니다.');
+          console.error('회원가입 오류:', error.message);
+        }
+        return;
+      }
+
+      if (data.user) {
         alert('회원가입이 정상적으로 처리되었습니다');
-        console.log('회원가입이 정상적으로 처리되었습니다.', responseData);
-      } else if (response.status === 409) {
-        alert('이미 가입된 이메일입니다.');
-        dispatch({
-          type: 'EMAIL_DUPLICATION',
-          payload: '중복된 이메일입니다.',
-        });
-      } else {
-        alert('회원가입에 실패하였습니다.');
+        console.log('회원가입이 정상적으로 처리되었습니다.', data.user);
+        // 여기에 회원가입 성공 후 추가 로직 (예: 로그인 페이지로 리다이렉트 등)
       }
     } catch (error) {
-      console.error('이메일 중복 확인 요청 중 오류가 발생했습니다.:', error);
-      throw error;
+      console.error('회원가입 처리 중 오류가 발생했습니다:', error);
+      alert('회원가입 처리 중 오류가 발생했습니다.');
     }
   };
 
@@ -180,7 +166,7 @@ export default function SignUpForm() {
         errorMessage={state.errorMessages.email}
         invalid={!state.valids.email}
         onChange={handleEmailChange}
-        onBlur={checkEmailDuplicationOnBlur}
+        // onBlur={checkEmailDuplicationOnBlur}
         value={state.email}
       />
       {/* 비밀번호 */}
