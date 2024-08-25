@@ -5,13 +5,22 @@ interface TitleProps {
   title: string;
   href: string;
   isMainPage: boolean;
+  className?: string; // 선택적 props로 추가 클래스네임을 받습니다.
 }
 
-export default function Title({ title, href, isMainPage }: TitleProps) {
+export default function Title({ title, href, isMainPage, className }: TitleProps) {
   return (
-    <Link href={href} className="block">
+    <Link href={href} className={cn('block', className)}>
       <div className="flex cursor-pointer flex-row items-center justify-between py-2">
-        <h3 className={cn('font-semibold', isMainPage ? 'text-2xl' : 'mb-3 text-3xl')}>{title}</h3>
+        <h3
+          className={cn(
+            'font-semibold',
+            isMainPage ? 'text-2xl' : 'mb-3 text-3xl',
+            className, // 추가 클래스네임을 h3 태그에도 적용합니다.
+          )}
+        >
+          {title}
+        </h3>
         {isMainPage && (
           <div className="ml-8 flex flex-row items-center">
             <span className="text-xs">더보기</span>
