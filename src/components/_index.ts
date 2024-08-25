@@ -9,3 +9,5 @@ export { default as SlideCategory } from './SlideCategory';
 
 export { default as BackButtonServer } from './BackButtonServer';
 export { default as BackButtonClient } from './BackButtonClient';
+
+export { default as InputField } from './InputField';
