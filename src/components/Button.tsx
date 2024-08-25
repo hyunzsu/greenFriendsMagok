@@ -13,7 +13,7 @@ export default function Button({ label, type, className, onClick, disabled }: TB
   return (
     <button
       type={type}
-      className={cn('hover:bg-secondary] h-[40px] w-[140px] border-2 border-primary text-[16px]', className)}
+      className={cn('active:bg-secondary] h-[40px] w-[140px] border border-primary text-[16px]', className)}
       onClick={onClick}
       disabled={disabled}
     >
