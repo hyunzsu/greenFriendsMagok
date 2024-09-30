@@ -3,16 +3,13 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import FormInput from '@/components/FormInput';
 import { SignupFormData, signupSchema } from '@/lib/schemas/authSchema';
+import { useAuth } from '@/lib/hooks/useAuth';
 
-export default function SignUpForm() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const supabase = createClientComponentClient({
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  });
+export default function CertificationForm() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // 인증 상태 관리하는 상태
+  const { verifyEntrancePassword } = useAuth();
 
   const {
     register,
@@ -24,31 +21,12 @@ export default function SignUpForm() {
     mode: 'onChange',
   });
 
-  const verifyEntrancePassword = async () => {
-    const enteredPassword = getValues('entrancepassword');
-
-    const { data, error } = await supabase.functions.invoke('verify-entrance-password', {
-      body: { password: enteredPassword },
-    });
-
-    if (error) {
-      console.error('Error verifying password:', error);
-      return false;
-    }
-
-    return data.isValid;
-  };
-
+  // 비밀번호 검증 처리 함수
   const handleVerification = async () => {
-    const isValid = await verifyEntrancePassword();
+    const enteredPassword = getValues('entrancepassword');
+    const isValid = await verifyEntrancePassword(enteredPassword);
     setIsAuthenticated(isValid);
-    if (isValid) {
-      console.log('인증 성공!');
-      alert('입주민 인증에 성공했습니다!');
-    } else {
-      console.log('인증 실패');
-      alert('입주민 인증에 실패했습니다. 비밀번호를 다시 확인해주세요.');
-    }
+    alert(isValid ? '입주민 인증에 성공했습니다!' : '입주민 인증에 실패했습니다. 비밀번호를 다시 확인해주세요.');
   };
 
   const onSubmit = (data: SignupFormData) => {
@@ -58,17 +36,19 @@ export default function SignUpForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {/* 입주민 인증을 위한 비밀번호 입력 필드 */}
       <FormInput
         label="(입주민 인증 절차) 녹색친구들 마곡 공동현관 비밀번호"
         name="entrancepassword"
         register={register}
         error={errors.entrancepassword}
-        placeholder="예) #7890"
+        placeholder="예) 공동현관 비밀번호를 입력해주세요"
       />
       <button type="button" onClick={handleVerification}>
         인증하기
       </button>
 
+      {/* 인증 성공 시 표시될 추가 폼 요소들 */}
       {isAuthenticated && <>{/* 인증 후 표시될 폼 요소들 */}</>}
     </form>
   );
