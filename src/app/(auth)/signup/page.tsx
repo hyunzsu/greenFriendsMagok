@@ -1,9 +1,9 @@
-import SignUpForm from './_components/SignUpForm';
+import CertificationForm from './_components/CertificationForm';
 
 export default function SignUp() {
   return (
     <div>
-      <SignUpForm />
+      <CertificationForm />
     </div>
   );
 }
