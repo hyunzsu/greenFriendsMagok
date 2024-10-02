@@ -36,7 +36,7 @@ export default function CertificationForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10 px-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="my-20 flex flex-col gap-10 px-4">
       {/* 입주민 인증을 위한 비밀번호 입력 필드 */}
       <div className="flex items-center justify-between gap-6">
         <FormInput
@@ -71,6 +71,29 @@ export default function CertificationForm() {
             register={register}
             error={errors.agreeToPrivacyPolicy}
             isCheckbox={true}
+          />
+        </div>
+      )}
+
+      {isAuthenticated && (
+        <div className="flex flex-col items-center gap-4">
+          <Button
+            label="카카오로 3초만에 시작하기"
+            type="button"
+            onClick={() => {
+              /* 카카오 로그인 로직 */
+            }}
+            className="h-[50px] w-full border-none bg-[#FEE500] font-bold text-black"
+            // disabled={!isAllAgreed}
+          />
+          <Button
+            label="이메일로 회원가입"
+            type="button"
+            onClick={() => {
+              /* 이메일로 회원가입 페이지 이동 */
+            }}
+            className="h-[50px] w-full border-none bg-primary font-bold text-white"
+            // disabled={!isAllAgreed}
           />
         </div>
       )}
