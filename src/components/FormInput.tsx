@@ -1,5 +1,4 @@
 import { FieldError, UseFormRegister } from 'react-hook-form';
-import Image from 'next/image';
 
 type FormInputProps = {
   label: string;
