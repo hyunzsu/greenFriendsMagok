@@ -49,7 +49,7 @@ export default function FormInput({
             type={type}
             placeholder={placeholder}
             {...register(name)}
-            className="border-b border-primary transition-colors duration-200 ease-in-out hover:border-tertiary focus:border-tertiary focus:outline-none"
+            className="border-b border-primary pb-1 transition-colors duration-200 ease-in-out hover:border-tertiary focus:border-tertiary focus:outline-none"
           />
         </div>
       )}

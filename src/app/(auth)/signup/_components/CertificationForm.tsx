@@ -8,33 +8,34 @@ import { SignupFormData, signupSchema } from '@/lib/schemas/authSchema';
 import { useAuth } from '@/lib/hooks/useAuth';
 import Button from '@/components/Button';
 import cn from '@/lib/utils/cn';
+import { useRouter } from 'next/navigation';
 
 export default function CertificationForm() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // 인증 상태 관리하는 state
   const { verifyEntrancePassword } = useAuth();
+  const router = useRouter();
 
   // react-hook-form의 useForm 훅 설정
   const {
-    register, // 입력 필드 등록 함수
-    formState: { errors }, // 폼 에러 상태
-    getValues, // 폼 값 가져오는 함수
-    watch, // 폼 필드 값 감시 함수
+    register,
+    formState: { errors },
+    getValues,
+    watch,
   } = useForm<SignupFormData>({
-    resolver: zodResolver(signupSchema), // zod 스키마를 사용한 유효성 검사 설정
-    mode: 'onChange', // 값이 변경될 때마다 유효성 검사 실행
+    resolver: zodResolver(signupSchema),
+    mode: 'onChange',
   });
 
   // 약관 동의 체크박스 상태 감시
   const agreeToTerms = watch('agreeToTerms');
   const agreeToPrivacyPolicy = watch('agreeToPrivacyPolicy');
-  // 모든 약관에 동의했는지 확인
   const isAllAgreed = agreeToTerms && agreeToPrivacyPolicy;
 
   // 비밀번호 검증 처리 함수
   const handleVerification = async () => {
-    const enteredPassword = getValues('entrancepassword'); // 입력된 비밀번호 가져오기
-    const isValid = await verifyEntrancePassword(enteredPassword); // 비밀번호 유효성 검사
-    setIsAuthenticated(isValid); // 인증 상태 업데이트
+    const enteredPassword = getValues('entrancepassword');
+    const isValid = await verifyEntrancePassword(enteredPassword);
+    setIsAuthenticated(isValid);
     alert(isValid ? '입주민 인증에 성공했습니다!' : '입주민 인증에 실패했습니다. 비밀번호를 다시 확인해주세요.');
   };
 
@@ -61,7 +62,7 @@ export default function CertificationForm() {
       {/* 인증 성공 시 표시될 추가 폼 요소들 */}
       {isAuthenticated && (
         <>
-          <div>
+          <div className="flex flex-col gap-1">
             <h3 className="text-xl font-semibold">서비스 이용약관에 동의해주세요.</h3>
             <FormInput
               label="[필수] 이용약관에 동의"
@@ -83,7 +84,9 @@ export default function CertificationForm() {
               label="카카오로 3초만에 시작하기"
               type="button"
               onClick={() => {
-                /* 카카오 로그인 로직 */
+                if (isAllAgreed) {
+                  router.push('/signup/kakao');
+                }
               }}
               className={cn(
                 'h-[50px] w-full border-none font-bold text-black transition-colors duration-300',
@@ -95,7 +98,9 @@ export default function CertificationForm() {
               label="이메일로 회원가입"
               type="button"
               onClick={() => {
-                /* 이메일로 회원가입 페이지 이동 */
+                if (isAllAgreed) {
+                  router.push('/signup/regular');
+                }
               }}
               className={cn(
                 'h-[50px] w-full border-none font-bold text-white transition-colors duration-300',
