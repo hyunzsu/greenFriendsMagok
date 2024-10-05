@@ -1,3 +1,9 @@
+import SignUpRegularForm from '../_components/SignUpRegularForm';
+
 export default function SignUpRegular() {
-  return <div>regular 페이지입니다.</div>;
+  return (
+    <main>
+      <SignUpRegularForm />
+    </main>
+  );
 }
