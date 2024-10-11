@@ -9,6 +9,8 @@ import { useAuth } from '@/lib/hooks/useAuth';
 import Button from '@/components/Button';
 import cn from '@/lib/utils/cn';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+import { createBrowserClient } from '@supabase/ssr';
 
 export default function CertificationForm() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // 인증 상태 관리하는 state
@@ -25,6 +27,19 @@ export default function CertificationForm() {
     resolver: zodResolver(signupSchema),
     mode: 'onChange',
   });
+
+  // 카카오 로그인
+  const signInWithKakao = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'kakao',
+      options: {
+        redirectTo: process.env.NEXT_PUBLIC_VERCEL_URL
+          ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/auth/callback`
+          : 'http://localhost:3000/auth/callback',
+      },
+    });
+    console.log(data);
+  };
 
   // 약관 동의 체크박스 상태 감시
   const agreeToTerms = watch('agreeToTerms');
@@ -84,9 +99,7 @@ export default function CertificationForm() {
               label="카카오로 3초만에 시작하기"
               type="button"
               onClick={() => {
-                if (isAllAgreed) {
-                  router.push('/signup/kakao');
-                }
+                signInWithKakao();
               }}
               className={cn(
                 'h-[50px] w-full border-none font-bold text-black transition-colors duration-300',
